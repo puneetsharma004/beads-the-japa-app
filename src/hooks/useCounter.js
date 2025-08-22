@@ -51,37 +51,41 @@ export const useCounter = () => {
   }, [saveData]);
 
   const increment = useCallback(() => {
-    const newCount = count + 1;
+  setCount(prevCount => {
+    const newCount = prevCount + 1;
     
     if (newCount >= 108) {
-      setCount(0);
-      const newTodayStats = {
-        count: todayStats.count + 108,
-        rounds: todayStats.rounds + 1
-      };
-      const newLifetimeStats = {
-        count: lifetimeStats.count + 108,
-        rounds: lifetimeStats.rounds + 1
-      };
-      setTodayStats(newTodayStats);
-      setLifetimeStats(newLifetimeStats);
+      setTodayStats(prevTodayStats => ({
+        count: prevTodayStats.count + 108,
+        rounds: prevTodayStats.rounds + 1
+      }));
+      setLifetimeStats(prevLifetimeStats => ({
+        count: prevLifetimeStats.count + 108,
+        rounds: prevLifetimeStats.rounds + 1
+      }));
       
       playCompletion();
       vibrateStrong();
+      return 0; // Reset to 0
     } else {
-      setCount(newCount);
       playClick();
       vibrate();
+      return newCount;
     }
-  }, [count, todayStats, lifetimeStats, playClick, playCompletion, vibrate, vibrateStrong]);
+  });
+}, [playClick, playCompletion, vibrate, vibrateStrong]); // Remove count, todayStats, lifetimeStats
 
-  const decrement = useCallback(() => {
-    if (count > 0) {
-      setCount(count - 1);
+const decrement = useCallback(() => {
+  setCount(prevCount => {
+    if (prevCount > 0) {
       playClick();
       vibrate();
+      return prevCount - 1;
     }
-  }, [count, playClick, vibrate]);
+    return prevCount; // Don't change if already 0
+  });
+}, [playClick, vibrate]); // Remove count dependency
+
 
   const reset = useCallback(() => {
     setCount(0);

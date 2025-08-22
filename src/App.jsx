@@ -5,10 +5,31 @@ import CounterDisplay from './components/CounterDisplay';
 import CounterButtons from './components/CounterButtons';
 import StealthToggle from './components/StealthToggle';
 import VolumeButtonToggle from './components/VolumeButtonToggle';
+import { useEffect } from 'react';
 
 function App() {
   const counter = useCounter();
   const sound = useSound();
+  useEffect(() => {
+  const handleKeyDown = (event) => {
+    if (event.code === "Space") {
+      counter.increment()
+    } else if (event.code === "ArrowUp") {
+      counter.increment()
+    } else if (event.code === "ArrowDown") {
+      counter.decrement()
+    } else if (event.code === "Backspace") {
+      counter.decrement()
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown); // cleanup
+  };
+}, []);
+
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
