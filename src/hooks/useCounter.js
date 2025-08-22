@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useSound } from './useSound';
 import { useVibration } from './useVibration';
+import { useVolumeButtons } from './useVolumeButtons';
 
 export const useCounter = () => {
   const [count, setCount] = useState(0);
@@ -8,6 +9,7 @@ export const useCounter = () => {
   const [lifetimeStats, setLifetimeStats] = useState({ count: 0, rounds: 0 });
   const [sessionDate, setSessionDate] = useState(new Date().toDateString());
   const [isStealthMode, setIsStealthMode] = useState(false);
+  const [isVolumeButtonMode, setIsVolumeButtonMode] = useState(false); // New state
   
   const { playClick, playCompletion } = useSound();
   const { vibrate, vibrateStrong } = useVibration();
@@ -21,12 +23,12 @@ export const useCounter = () => {
         setCount(data.currentCount || 0);
         setTodayStats(data.todayStats || { count: 0, rounds: 0 });
       } else {
-        // New day, reset daily stats
         setCount(0);
         setTodayStats({ count: 0, rounds: 0 });
       }
       setLifetimeStats(data.lifetimeStats || { count: 0, rounds: 0 });
       setIsStealthMode(data.isStealthMode || false);
+      setIsVolumeButtonMode(data.isVolumeButtonMode || false);
     }
     setSessionDate(new Date().toDateString());
   }, []);
@@ -38,10 +40,11 @@ export const useCounter = () => {
       todayStats,
       lifetimeStats,
       sessionDate,
-      isStealthMode
+      isStealthMode,
+      isVolumeButtonMode
     };
     localStorage.setItem('sudhma-data', JSON.stringify(data));
-  }, [count, todayStats, lifetimeStats, sessionDate, isStealthMode]);
+  }, [count, todayStats, lifetimeStats, sessionDate, isStealthMode, isVolumeButtonMode]);
 
   useEffect(() => {
     saveData();
@@ -51,7 +54,6 @@ export const useCounter = () => {
     const newCount = count + 1;
     
     if (newCount >= 108) {
-      // Mala completed
       setCount(0);
       const newTodayStats = {
         count: todayStats.count + 108,
@@ -73,7 +75,6 @@ export const useCounter = () => {
     }
   }, [count, todayStats, lifetimeStats, playClick, playCompletion, vibrate, vibrateStrong]);
 
-  // NEW: Decrement function
   const decrement = useCallback(() => {
     if (count > 0) {
       setCount(count - 1);
@@ -90,15 +91,24 @@ export const useCounter = () => {
     setIsStealthMode(prev => !prev);
   }, []);
 
+  const toggleVolumeButtonMode = useCallback(() => {
+    setIsVolumeButtonMode(prev => !prev);
+  }, []);
+
+  // Volume button integration
+  useVolumeButtons(isVolumeButtonMode, increment, decrement);
+
   return {
     count,
     todayStats,
     lifetimeStats,
     sessionDate,
     isStealthMode,
+    isVolumeButtonMode,
     increment,
-    decrement, // NEW
+    decrement,
     reset,
-    toggleStealth
+    toggleStealth,
+    toggleVolumeButtonMode
   };
 };

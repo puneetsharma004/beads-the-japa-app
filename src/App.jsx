@@ -4,6 +4,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs';
 import CounterDisplay from './components/CounterDisplay';
 import CounterButtons from './components/CounterButtons';
 import StealthToggle from './components/StealthToggle';
+import VolumeButtonToggle from './components/VolumeButtonToggle';
 
 function App() {
   const counter = useCounter();
@@ -48,11 +49,12 @@ function App() {
 
       {/* Volume Button Mode Indicator */}
      
-        <div className="text-center mb-8 block md:hidden">
-          <div className="text-sm font-medium tracking-wider border-b border-gray-600 pb-1 inline-block">
-            VOLUME-BUTTONS MODE
-          </div>
-        </div>
+        {/* Volume Button Mode Toggle */}
+      <VolumeButtonToggle 
+        isVolumeButtonMode={counter.isVolumeButtonMode}
+        onToggle={counter.toggleVolumeButtonMode}
+        isStealthMode={counter.isStealthMode}
+      />
     
 
       {/* Main Counter Display */}
