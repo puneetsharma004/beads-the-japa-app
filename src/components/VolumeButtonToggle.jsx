@@ -3,7 +3,7 @@ import { MdVolumeUp, MdVolumeOff } from 'react-icons/md';
 export default function VolumeButtonToggle({ isVolumeButtonMode, onToggle, isStealthMode }) {
 
   return (
-    <div className="text-center mb-8">
+    <div className="text-center mb-8 block md:hidden">
       <button 
         onClick={onToggle}
         className={`text-sm font-medium tracking-wider pb-1 inline-flex items-center gap-2 transition-all duration-300 outline-none${

@@ -32,7 +32,7 @@ function App() {
 
 
   return (
-    <div className="h-screen bg-black text-white flex flex-col ">
+    <div className="h-screen max-h-screen bg-black text-white flex flex-col ">
       {/* Audio elements */}
       <audio ref={sound.clickAudio} preload="auto">
         <source src="/sounds/click.mp3" type="audio/mpeg" />
