@@ -1,7 +1,7 @@
 export default function CounterButtons({ onIncrement, onDecrement, isStealthMode }) {
   if (isStealthMode) {
     return (
-      <div className="pb-12 flex justify-center flex-col items-center gap-6 mt-auto">
+      <div className="pb-12 flex justify-center flex-col items-center gap-6">
         {/* Smaller decrement button */}
         <button
           onClick={onDecrement}
