@@ -47,13 +47,13 @@ function App() {
       )}
 
       {/* Volume Button Mode Indicator */}
-      {!counter.isStealthMode && (
-        <div className="text-center mb-8">
+     
+        <div className="text-center mb-8 block md:hidden">
           <div className="text-sm font-medium tracking-wider border-b border-gray-600 pb-1 inline-block">
             VOLUME-BUTTONS MODE
           </div>
         </div>
-      )}
+    
 
       {/* Main Counter Display */}
       <CounterDisplay 
@@ -61,26 +61,7 @@ function App() {
         isStealthMode={counter.isStealthMode}
       />
 
-      {/* Statistics */}
-      {!counter.isStealthMode && (
-        <div className="text-center space-y-2 mb-12">
-          <div>
-            <span className="text-gray-400">Today </span>
-            <span className="text-white font-medium">{counter.todayStats.count}</span>
-          </div>
-          <div className="text-gray-500 text-sm">
-            {counter.todayStats.count} × {counter.todayStats.rounds}
-          </div>
-          
-          <div className="mt-4">
-            <span className="text-gray-400">Lifetime </span>
-            <span className="text-white font-medium">{counter.lifetimeStats.count.toLocaleString()}</span>
-          </div>
-          <div className="text-gray-500 text-sm">
-            108 × {counter.lifetimeStats.rounds}
-          </div>
-        </div>
-      )}
+
 
       {/* Counter Buttons - NOW WITH INCREMENT/DECREMENT */}
       <CounterButtons 
@@ -88,28 +69,6 @@ function App() {
         onDecrement={counter.decrement}
         isStealthMode={counter.isStealthMode}
       />
-
-      {/* Reset Button */}
-      {!counter.isStealthMode && counter.count > 0 && (
-        <div className="text-center pb-4">
-          <button 
-            onClick={counter.reset}
-            className="text-gray-500 text-sm hover:text-gray-300 transition-colors"
-          >
-            Reset Current Count
-          </button>
-        </div>
-      )}
-
-      {/* Stealth Mode Indicator */}
-      {counter.isStealthMode && (
-        <div className="flex-1 flex items-center justify-center pb-20">
-          <div className="text-center">
-            <div className="w-3 h-3 bg-green-500 rounded-full mx-auto mb-2 animate-pulse"></div>
-            <div className="text-sm text-gray-500">Active Session</div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
