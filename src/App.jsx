@@ -58,15 +58,15 @@ function App() {
       </header>
 
       {/* Session Info */}
-      {!counter.isStealthMode && (
-        <div className="text-center text-gray-400 text-sm mb-6">
+     
+        <div className={`text-center text-gray-400 text-sm mb-6 ${ counter.isStealthMode ? "opacity-0": "opacity-100"}`}>
           Current session date: {new Date(counter.sessionDate).toLocaleDateString('en-GB', {
             day: '2-digit',
             month: 'short',
             year: 'numeric'
           })}
         </div>
-      )}
+     
 
       {/* Volume Button Mode Indicator */}
      
