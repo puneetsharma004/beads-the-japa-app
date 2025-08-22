@@ -11,7 +11,7 @@ export default function CounterDisplay({ count, isStealthMode }) {
   }, [count])
 
   return (
-    <div className="flex flex-col items-center justify-center my-4">
+    <div className="flex flex-col items-center justify-center my-4 gap-4">
       <h3>
         <span className="text-[#212830] flex items-center gap-1 font-bold">108 <RxCross2/> {roundsChanted} </span>
       </h3>
