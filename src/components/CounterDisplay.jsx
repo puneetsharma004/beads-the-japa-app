@@ -10,11 +10,11 @@ export default function CounterDisplay({ count, isStealthMode }) {
   }, [count])
 
   return (
-    <div className={`flex flex-col items-center justify-center my-4 gap-4 transition-all ${isStealthMode ? "opacity-0": "opacity-100"}`}>
+    <div className={`flex flex-col items-center justify-center my-4 gap-4 transition-all font-roboto ${isStealthMode ? "opacity-0": "opacity-100"}`}>
       <h3>
-        <span className="text-[#212830] flex items-center gap-1 font-bold">108 <RxCross2/> {roundsChanted} </span>
+        <span className="text-gray-400 flex items-center gap-1 font-bold">108 <RxCross2/> {roundsChanted} </span>
       </h3>
-      <div className="text-7xl font-extralight transition-all duration-300 ease-out">
+      <div className="text-slate-50 text-7xl transition-all duration-300 ease-out ">
         {count}
       </div>
     </div>

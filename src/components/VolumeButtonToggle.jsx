@@ -8,8 +8,8 @@ export default function VolumeButtonToggle({ isVolumeButtonMode, onToggle, isSte
         onClick={onToggle}
         className={`text-sm font-medium tracking-wider pb-1 inline-flex items-center gap-2 transition-all duration-300 outline-none ${
           isVolumeButtonMode && isStealthMode 
-          ?'border-green-500 text-green-400 hover:text-green-300' 
-            : 'border-gray-600 text-gray-400 hover:text-gray-300'
+          ?'text-green-400 hover:text-green-300' 
+            :'text-gray-400 hover:text-gray-300'
         }`}
       >
         {isVolumeButtonMode ? (

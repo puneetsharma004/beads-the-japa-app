@@ -12,7 +12,7 @@ export default function StealthToggle({ isStealthMode, onToggle }) {
       ) : (
         <RiEyeLine className="w-4 h-4 text-gray-400" />
       )}
-      <div className={`w-2 h-2 rounded-full ${isStealthMode ? 'bg-green-500' : 'bg-gray-500'}`}></div>
+
       <span className="text-xs">{isStealthMode ? 'Stealth' : 'Normal'}</span>
     </button>
   );

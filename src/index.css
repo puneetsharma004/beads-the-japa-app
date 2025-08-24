@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 @theme {
   --color-saffron: #F59E0B;
   --color-dharma: #92400E;
@@ -8,13 +8,14 @@
   --animate-pulse-soft: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-bounce-gentle: bounce 1s ease-in-out 3;
   --animate-fade-in: fadeIn 0.3s ease-out;
+  --font-roboto: "Roboto Mono", monospace;
 }
 
 /* Dark theme base */
 body {
   background-color: #000000;
   color: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-family: "Roboto Mono", monospace;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
 }

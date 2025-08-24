@@ -91,7 +91,7 @@ function App() {
       {/* Header */}
       <header className="p-4 flex justify-between items-center">
         <h1 className="text-xl font-medium">
-          {counter.isStealthMode ? "" : "Sudhma"}
+          {counter.isStealthMode ? "" : "Beads"}
         </h1>
         <div className="flex items-center gap-3">
           <StealthToggle 
