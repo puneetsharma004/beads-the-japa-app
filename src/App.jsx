@@ -79,7 +79,7 @@ function App() {
 
 
   return (
-    <div className="h-screen max-h-screen bg-black text-white flex flex-col ">
+    <div className="h-screen max-h-screen bg-black text-slate-50 flex flex-col ">
       {/* Audio elements */}
       <audio ref={sound.clickAudio} preload="auto">
         <source src="/sounds/click.mp3" type="audio/mpeg" />
@@ -98,7 +98,7 @@ function App() {
             isStealthMode={counter.isStealthMode}
             onToggle={counter.toggleStealth}
           />
-          <button className="p-2 text-gray-400 hover:text-white transition-colors">
+          <button className="p-2 text-gray-400 hover:text-white transition-colors outline-none">
             <BsThreeDotsVertical className="w-5 h-5" />
           </button>
         </div>
