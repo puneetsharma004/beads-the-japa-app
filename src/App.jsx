@@ -5,9 +5,11 @@ import CounterDisplay from './components/CounterDisplay';
 import CounterButtons from './components/CounterButtons';
 import StealthToggle from './components/StealthToggle';
 import VolumeButtonToggle from './components/VolumeButtonToggle';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 function App() {
+  // const [time, setTime] = useState(0); // time in seconds
+  // const intervalRef = useRef(null);
   const counter = useCounter();
   const sound = useSound();
   useEffect(() => {
@@ -30,6 +32,51 @@ function App() {
   };
 }, []);
 
+// // Function to start timer
+//   const startTimer = () => {
+//     if (!intervalRef.current) {
+//       intervalRef.current = setInterval(() => {
+//         setTime((prev) => prev + 1);
+//       }, 1000);
+//     }
+//   };
+
+//   // Function to pause timer
+//   const pauseTimer = () => {
+//     if (intervalRef.current) {
+//       clearInterval(intervalRef.current);
+//       intervalRef.current = null;
+//     }
+//   };
+
+//   useEffect(() => {
+//     // Start when mounted
+//     startTimer();
+
+//     // Listen for visibility changes
+//     const handleVisibilityChange = () => {
+//       if (document.hidden) {
+//         pauseTimer();
+//       } else {
+//         startTimer();
+//       }
+//     };
+
+//     document.addEventListener("visibilitychange", handleVisibilityChange);
+
+//     return () => {
+//       document.removeEventListener("visibilitychange", handleVisibilityChange);
+//       pauseTimer();
+//     };
+//   }, []);
+
+//   // Format seconds to mm:ss
+//   const formatTime = (secs) => {
+//     const minutes = Math.floor(secs / 60);
+//     const seconds = secs % 60;
+//     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+//   };
+
 
   return (
     <div className="h-screen max-h-screen bg-black text-white flex flex-col ">
@@ -44,7 +91,7 @@ function App() {
       {/* Header */}
       <header className="p-4 flex justify-between items-center">
         <h1 className="text-xl font-medium">
-          {counter.isStealthMode ? "Timer" : "Sudhma"}
+          {counter.isStealthMode ? "" : "Sudhma"}
         </h1>
         <div className="flex items-center gap-3">
           <StealthToggle 
@@ -59,7 +106,7 @@ function App() {
 
       {/* Session Info */}
      
-        <div className={`text-center text-gray-400 text-sm mb-6 ${ counter.isStealthMode ? "opacity-0": "opacity-100"}`}>
+        <div className={`text-center text-gray-400 text-sm mb-6 transition-all ${ counter.isStealthMode ? "opacity-0": "opacity-100"}`}>
           Current session date: {new Date(counter.sessionDate).toLocaleDateString('en-GB', {
             day: '2-digit',
             month: 'short',

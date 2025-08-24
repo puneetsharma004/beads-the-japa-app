@@ -4,7 +4,7 @@ export default function StealthToggle({ isStealthMode, onToggle }) {
   return (
     <button
       onClick={onToggle}
-      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/50 border border-gray-700 text-sm hover:bg-gray-700/50 transition-all"
+      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800/50 border border-gray-700 text-sm hover:bg-gray-700/50 transition-all outline-none"
       title={isStealthMode ? 'Switch to Normal Mode' : 'Switch to Stealth Mode'}
     >
       {isStealthMode ? (
